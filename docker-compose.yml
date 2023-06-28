@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      args:
+        user: wpmedia
+        uid: 1212
+      context: .
+      dockerfile: Dockerfile
+    container_name: wpmedia-app
+    volumes:
+      - .:/var/www
+    networks:
+      - wpmedia
+
+  mysql:
+    image: mysql:8.0
+    container_name: wpmedia-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - wpmedia
+
+  nginx:
+    image: nginx:alpine
+    container_name: wpmedia-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx/wpmedia.conf:/etc/nginx/conf.d/default.conf
+      - ./docker-compose/nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - wpmedia
+
+networks:
+  wpmedia:
+    name: wpmedia
+    driver: bridge
+
+volumes:
+  mysql-data:

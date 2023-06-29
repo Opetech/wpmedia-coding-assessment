@@ -1,6 +1,10 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
+
+//Load .env file
+$dotenv = Dotenv\Dotenv::createImmutable('..', '.env');
+$dotenv->load();
 
 $request = $_SERVER['REQUEST_URI'];
 $viewDir = '/views/';

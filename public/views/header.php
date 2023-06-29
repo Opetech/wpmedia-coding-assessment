@@ -23,13 +23,13 @@ if (empty($meta_title)) {
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="services.php">Services</a>
+                <a class="nav-link" href="/services">Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="about.php">About Us</a>
+                <a class="nav-link" href="/about">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="contact.php">Contact Us</a>
+                <a class="nav-link" href="/contact">Contact Us</a>
             </li>
         </ul>
     </div>

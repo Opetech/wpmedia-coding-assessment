@@ -1,3 +1,6 @@
+<?php
+require_once '../app/process.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +38,7 @@
                                     <input type="text"
                                            id="email"
                                            class="form-control"
-                                           name="login" required autofocus>
+                                           name="email" required autofocus>
                                 </div>
                             </div>
 
@@ -51,7 +54,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" name="login" class="btn btn-primary">
                                         Login
                                     </button>
                                 </div>
@@ -62,20 +65,6 @@
             </div>
         </div>
     </div>
-    <!--    <div class="container">-->
-    <!--        <form>-->
-    <!--            <div class="mb-3">-->
-    <!--                <label for="emailAddress" class="form-label">Email address</label>-->
-    <!--                <input type="email" class="form-control" id="emailAddress">-->
-    <!--            </div>-->
-    <!--            <div class="mb-3">-->
-    <!--                <label for="password" class="form-label">Password</label>-->
-    <!--                <input type="password" class="form-control" id="password">-->
-    <!--            </div>-->
-    <!--            <button type="submit" class="btn btn-primary">Login</button>-->
-    <!--        </form>-->
-    <!--    </div>-->
 </section>
-
 </body>
 </html>

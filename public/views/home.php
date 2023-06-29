@@ -1,6 +1,6 @@
 <?php
 $meta_title = "Index";
-include 'header.php'
+include 'header.php';
 ?>
 <section>
     <div class="container">

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../app/process.php';
 ?>
 <!DOCTYPE html>
@@ -31,7 +32,12 @@ require_once '../app/process.php';
                 <div class="card">
                     <div class="card-header">Login</div>
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form method="POST">
+                            <?php
+                            if ($_SESSION['error'])
+                                echo '<div class="alert alert-danger">'.$_SESSION['message'].'</div>';
+                               unset($_SESSION['error']);
+                            ?>
                             <div class="form-group row mb-3">
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail</label>
                                 <div class="col-md-6">

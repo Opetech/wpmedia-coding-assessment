@@ -31,6 +31,10 @@ switch ($request) {
         require __DIR__ . $viewDir . 'about.php';
         break;
 
+    case '/admin/dashboard':
+        require __DIR__ . $viewDir . 'dashboard.php';
+        break;
+
     default:
         http_response_code(404);
 }

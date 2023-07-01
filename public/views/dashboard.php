@@ -25,7 +25,7 @@ if (!isLoggedIn()) {
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Hi, <?php echo $_SESSION['username']?></a>
+                <a class="nav-link" href="#">Hi, <?php echo $_SESSION['username'] ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>
@@ -40,6 +40,11 @@ if (!isLoggedIn()) {
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Welcome Admin!</div>
+                </div>
+                <div>
+                    <a href="/admin/crawl">
+                        <button class="btn btn-primary mt-3">Trigger Crawl</button>
+                    </a>
                 </div>
             </div>
         </div>

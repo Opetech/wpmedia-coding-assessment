@@ -28,6 +28,10 @@ switch ($request) {
         require $viewDir . 'dashboard.php';
         break;
 
+    case '/admin/crawl':
+        require __DIR__.'/crawler.php';
+        break;
+
     default:
         http_response_code(404);
 }

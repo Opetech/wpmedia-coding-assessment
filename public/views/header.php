@@ -20,7 +20,7 @@ if (empty($meta_title)) {
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/a">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/services">Services</a>

@@ -28,6 +28,11 @@ switch ($request) {
         require $viewDir . 'dashboard.php';
         break;
 
+    case '/sitemap':
+        header('Content-Type: application/xml');
+        require $viewDir .'/sitemap.html';
+        break;
+
     case '/admin/crawl':
         require __DIR__.'/crawler.php';
         break;

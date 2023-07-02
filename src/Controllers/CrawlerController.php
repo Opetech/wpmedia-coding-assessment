@@ -17,5 +17,8 @@ class CrawlerController
     public function crawl(): void
     {
         $this->crawlerService->crawl();
+
+        header('Location: /admin/dashboard');
+        exit();
     }
 }

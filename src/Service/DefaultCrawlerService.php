@@ -2,8 +2,10 @@
 
 namespace App\Service;
 
+use App\Dto\InternalLinkDto;
 use App\Repository\InternalLinksRepository;
 use App\Repository\InternalLinksRepositoryImpl;
+use DOMDocument;
 
 class DefaultCrawlerService implements CrawlerService
 {
@@ -19,17 +21,42 @@ class DefaultCrawlerService implements CrawlerService
         if (count($this->internalLinksRepository->findAll()) > 0) {
             $this->internalLinksRepository->deleteAll();
         }
-        $this->deleteSitemapFileIfExist();
-        $this->startCrawlingProcess();
+        $crawlResultArray = $this->startCrawlingProcess();
+        //handle sitemap generation process
+        new SitemapGeneratorService($crawlResultArray);
+
+        //save results into database
+        foreach ($crawlResultArray as $hyperlink){
+            $internalLinkDto = new InternalLinkDto($_ENV['APP_BASE_URL'], $hyperlink["url"]);
+            $this->internalLinksRepository->save($internalLinkDto);
+        }
     }
 
-    private function deleteSitemapFileIfExist()
+    private function startCrawlingProcess(): array
     {
+        $results = [];
+        // Get the HTML content of the URL
+        $html = file_get_contents("http://wpmedia-nginx/");
 
+        // Create a DOMDocument object and load the HTML
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($html);
+        libxml_clear_errors();
+
+        // Find and process all anchor tags
+        $anchorTags = $dom->getElementsByTagName('a');
+        foreach ($anchorTags as $anchorTag) {
+            $href = $anchorTag->getAttribute('href');
+            $absoluteUrl = $this->getAbsoluteUrl($href);
+            $results[]   = ['url' => $absoluteUrl];
+        }
+
+        return $results;
     }
 
-    private function startCrawlingProcess()
+    private function getAbsoluteUrl(string $href)
     {
-        
+        return $_ENV['APP_BASE_URL'] . $href;
     }
 }

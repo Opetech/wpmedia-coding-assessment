@@ -41,6 +41,9 @@ if (!isLoggedIn()) {
                 <div class="card">
                     <div class="card-header">Welcome Admin!</div>
                 </div>
+                <?php
+                   require "alert-message.php";
+                ?>
                 <div>
                     <a href="/admin/crawl">
                         <button class="btn btn-primary mt-3">Trigger Crawl</button>

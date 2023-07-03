@@ -6,17 +6,17 @@ namespace App\Service;
 
 use App\Commands\Command;
 
-class CrawlerInvoker
+class CrawlInvoker
 {
-    private array $commands = [];
+    private Command $command;
 
     public function setCommand(Command $command)
     {
-        $this->commands[] = $command;
+        $this->command = $command;
     }
 
     public function run()
     {
-//        $this->commands->execute();
+        $this->command->execute();
     }
 }

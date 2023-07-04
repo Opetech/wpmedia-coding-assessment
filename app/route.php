@@ -3,7 +3,6 @@ $request = $_SERVER['REQUEST_URI'];
 $viewDir = __DIR__.'/../public/views/';
 
 switch ($request) {
-    case '':
     case '/':
         require $viewDir . 'home.php';
         break;
@@ -34,7 +33,7 @@ switch ($request) {
         break;
 
     case '/admin/crawl':
-        require __DIR__.'/crawler.php';
+        require __DIR__.'/../public/crawler.php';
         break;
 
     default:

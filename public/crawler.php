@@ -2,24 +2,20 @@
 
 use App\Commands\CrawlCommand;
 use App\Commands\Crawler;
-use App\Controllers\CrawlerController;
 use App\Service\CrawlInvoker;
-use App\Service\DefaultCrawlerService;
 use App\Utils\SessionMessageUtil;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once 'helpers.php';
+require_once __DIR__ . '/../app/helpers.php';
+require_once __DIR__ . '/../public/index.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../', '.env');
-$dotenv->load();
-
+$isWebRequest = isset($_SERVER['HTTP_HOST']);
 
 //TODO
 //Prevent non authenticated user from making this request
 
 try {
-    $crawler = new Crawler();
-    $urlToCrawl = "http://wpmedia-nginx/";
+    $crawler      = new Crawler();
+    $urlToCrawl   = "http://wpmedia-nginx/";
     $crawlCommand = new CrawlCommand($crawler, $urlToCrawl);
     $crawlInvoker = new CrawlInvoker();
     $crawlInvoker->setCommand($crawlCommand);
@@ -27,16 +23,16 @@ try {
 
     SessionMessageUtil::set("success", true);
     SessionMessageUtil::set("message", "Crawling was successful");
-
-    header('Location: /admin/dashboard');
-    exit();
-}catch (Exception $e){
+} catch (Exception $e) {
     SessionMessageUtil::set("error", true);
     SessionMessageUtil::set("message", $e->getMessage());
-
+}
+//Since we are expecting cron job request, we only want to send a redirect response for web request.
+if ($isWebRequest) {
     header('Location: /admin/dashboard');
     exit();
 }
+
 
 
 

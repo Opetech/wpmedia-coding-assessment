@@ -10,8 +10,10 @@ require_once __DIR__ . '/../public/index.php';
 
 $isWebRequest = isset($_SERVER['HTTP_HOST']);
 
-//TODO
-//Prevent non authenticated user from making this request
+if($isWebRequest && !isLoggedIn()){
+    header('Location: /login');
+    exit();
+}
 
 try {
     $crawler      = new Crawler();

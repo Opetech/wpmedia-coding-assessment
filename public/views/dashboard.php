@@ -28,9 +28,13 @@ if (!isLoggedIn()) {
                 <a class="nav-link" href="#">Hi, <?php echo $_SESSION['username'] ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <a class="nav-link" href="#" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
             </li>
         </ul>
+        <form id="logout-form" method="POST" class="d-none">
+             <input type="hidden" name="logout">
+        </form>
     </div>
 </nav>
 

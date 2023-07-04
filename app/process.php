@@ -11,3 +11,8 @@ if (isset($_POST["login"])) {
     $loginController->login($loginRequest);
 }
 
+if (isset($_POST["logout"])) {
+    $loginController = new LoginController(new AuthService());
+    $loginController->logout();
+}
+

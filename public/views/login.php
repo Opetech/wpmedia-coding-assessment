@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once '../app/process.php';
+require_once '../app/helpers.php';
+
+if (isLoggedIn()) {
+    header("location:/admin/dashboard");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html>

@@ -13,7 +13,7 @@ class CronUtil
         $dayOfMonth = '*';
         $month      = '*';
         $dayOfWeek  = '*';
-        $schedule   = sprintf('%s %s %s %s %s', $minute, $hour, $dayOfMonth, $month, $dayOfWeek);
+        $schedule   = sprintf('%s %s %s %s %s', $minute, $hour, $dayOfMonth, $month, $dayOfWeek); //to run every hour
         $command    = '/usr/local/bin/php /var/www/app/crawler.php';
         $cronJob    = sprintf('%s %s', $schedule, $command);
         $existingCronJobs = shell_exec('crontab -l');

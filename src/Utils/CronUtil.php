@@ -9,12 +9,12 @@ class CronUtil
     public static function createCrawlerCronJob(): void
     {
         $minute     = '*';
-        $hour       = '*';
+        $hour       = '0';
         $dayOfMonth = '*';
         $month      = '*';
         $dayOfWeek  = '*';
         $schedule   = sprintf('%s %s %s %s %s', $minute, $hour, $dayOfMonth, $month, $dayOfWeek);
-        $command    = 'su /usr/local/bin/php /var/www/app/crawler.php';
+        $command    = '/usr/local/bin/php /var/www/app/crawler.php';
         $cronJob    = sprintf('%s %s', $schedule, $command);
         $existingCronJobs = shell_exec('crontab -l');
 

@@ -40,7 +40,9 @@ class Crawler
 
     private function renameHomepageFile(): void
     {
-        rename(__DIR__ . '/../../public/views/home.php', __DIR__ . '/../../public/views/home.html');
+        $homepageFilepath = __DIR__ . '/../../public/views/home.php';
+        if (file_exists($homepageFilepath))
+            rename($homepageFilepath, __DIR__ . '/../../public/views/home.html');
     }
 
     private function startCrawlingProcess(string $url): array

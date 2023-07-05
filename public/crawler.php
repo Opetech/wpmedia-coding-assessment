@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use App\Commands\CrawlCommand;
 use App\Commands\Crawler;

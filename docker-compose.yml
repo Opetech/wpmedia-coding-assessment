@@ -11,7 +11,7 @@ services:
     container_name: wpmedia-app
     volumes:
       - .:/var/www
-      - ./php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./custom-php.ini:/usr/local/etc/php/conf.d/custom-php.ini
     networks:
       - wpmedia
 

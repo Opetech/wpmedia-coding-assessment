@@ -1,4 +1,8 @@
 <?php
+
+use App\Controllers\AdminController;
+use App\Service\AdminService;
+
 $request = $_SERVER['REQUEST_URI'];
 $viewDir = __DIR__ . '/../public/views/';
 
@@ -40,6 +44,13 @@ switch($request) {
 
     case '/admin/crawl':
         require __DIR__ . '/../public/crawler.php';
+        break;
+
+    case '/admin/crawl/result':
+        $adminService = new AdminService();
+        $adminController = new AdminController($adminService);
+        $crawledLinks = $adminController->getCrawledLinks();
+        require $viewDir . 'dashboard.php';
         break;
 
     default:

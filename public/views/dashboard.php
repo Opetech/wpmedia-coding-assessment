@@ -33,7 +33,7 @@ if (!isLoggedIn()) {
             </li>
         </ul>
         <form id="logout-form" method="POST" class="d-none">
-             <input type="hidden" name="logout">
+            <input type="hidden" name="logout">
         </form>
     </div>
 </nav>
@@ -46,12 +46,23 @@ if (!isLoggedIn()) {
                     <div class="card-header">Welcome Admin!</div>
                 </div>
                 <?php
-                   require "alert-message.php";
+                require "alert-message.php";
                 ?>
                 <div>
                     <a href="/admin/crawl">
                         <button class="btn btn-primary mt-3">Trigger Crawl</button>
                     </a>
+                    <a href="/admin/crawl/result">
+                        <button class="btn btn-primary mt-3">View Crawl Result</button>
+                    </a>
+                    <?php if (isset($crawledLinks)) : ?>
+                        <h4 class="my-3">Crawl Results</h4>
+                        <ul class="list-group list-group-flush">
+                            <?php foreach ($crawledLinks as $link) : ?>
+                                <li class="list-group-item"><?php echo $link['target_url']; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

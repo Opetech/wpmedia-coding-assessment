@@ -1,10 +1,16 @@
 <?php
 $request = $_SERVER['REQUEST_URI'];
-$viewDir = __DIR__.'/../public/views/';
+$viewDir = __DIR__ . '/../public/views/';
 
-switch ($request) {
+switch($request) {
     case '/':
-        require $viewDir . 'home.php';
+        if (file_exists($viewDir . 'home.php')) {
+            require $viewDir . 'home.php';
+        } else if (file_exists($viewDir . 'home.html')) {
+            require $viewDir . 'home.html';
+        }else{
+            http_response_code(404);
+        }
         break;
 
     case '/login':
@@ -29,11 +35,11 @@ switch ($request) {
 
     case '/sitemap':
         header('Content-Type: application/xml');
-        require $viewDir .'/sitemap.html';
+        require $viewDir . '/sitemap.html';
         break;
 
     case '/admin/crawl':
-        require __DIR__.'/../public/crawler.php';
+        require __DIR__ . '/../public/crawler.php';
         break;
 
     default:

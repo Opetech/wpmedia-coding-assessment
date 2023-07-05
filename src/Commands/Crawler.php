@@ -26,15 +26,21 @@ class Crawler
         $crawlResultArray = $this->startCrawlingProcess($url);
         //handle sitemap generation process
         new SitemapGeneratorService($crawlResultArray);
-
         //Setup cron job to run the crawl every hour
         CronUtil::createCrawlerCronJob();
 
         //save results into database
-        foreach ($crawlResultArray as $hyperlink){
+        foreach ($crawlResultArray as $hyperlink) {
             $internalLinkDto = new InternalLinkDto($_ENV['APP_BASE_URL'], $hyperlink["url"]);
             $this->internalLinksRepository->save($internalLinkDto);
         }
+
+        $this->renameHomepageFile();
+    }
+
+    private function renameHomepageFile(): void
+    {
+        rename(__DIR__ . '/../../public/views/home.php', __DIR__ . '/../../public/views/home.html');
     }
 
     private function startCrawlingProcess(string $url): array

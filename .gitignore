@@ -1,3 +1,5 @@
 /vendor/*
 /Tests/env/local/
 /.idea
+/public/views/home.html
+/public/views/sitemap.html

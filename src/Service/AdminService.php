@@ -4,20 +4,22 @@
 namespace App\Service;
 
 
+use App\DB\MysqlConnection;
 use App\Repository\InternalLinksRepository;
-use App\Repository\InternalLinksRepositoryImpl;
 
 class AdminService
 {
     private InternalLinksRepository $internalLinksRepository;
 
-    public function __construct()
+    public function setInternalLinksRepository(InternalLinksRepository $internalLinksRepository)
     {
-        $this->internalLinksRepository = new InternalLinksRepositoryImpl();
+        $this->internalLinksRepository = $internalLinksRepository;
     }
 
     public function getCrawledLinks()
     {
-         return $this->internalLinksRepository->findAll();
+        $this->internalLinksRepository->setConnection(new MysqlConnection());
+
+        return $this->internalLinksRepository->findAll();
     }
 }

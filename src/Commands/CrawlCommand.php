@@ -4,6 +4,8 @@
 namespace App\Commands;
 
 
+use App\Repository\InternalLinksRepositoryImpl;
+
 class CrawlCommand implements Command
 {
     private Crawler $crawler;
@@ -17,6 +19,7 @@ class CrawlCommand implements Command
 
     public function execute(): void
     {
+         $this->crawler->setInternalLinksRepository(new InternalLinksRepositoryImpl());
          $this->crawler->crawl($this->url);
     }
 }

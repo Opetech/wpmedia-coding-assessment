@@ -4,7 +4,6 @@ namespace App\Commands;
 
 use App\Dto\InternalLinkDto;
 use App\Repository\InternalLinksRepository;
-use App\Repository\InternalLinksRepositoryImpl;
 use App\Service\SitemapGeneratorService;
 use App\Utils\CronUtil;
 use DOMDocument;
@@ -13,9 +12,9 @@ class Crawler
 {
     private InternalLinksRepository $internalLinksRepository;
 
-    public function __construct()
+    public function setInternalLinksRepository(InternalLinksRepository $internalLinksRepository)
     {
-        $this->internalLinksRepository = new InternalLinksRepositoryImpl();
+        $this->internalLinksRepository = $internalLinksRepository;
     }
 
     public function crawl(string $url)

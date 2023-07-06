@@ -3,16 +3,14 @@
 namespace App\Repository;
 
 use App\DB\Connection;
-use App\DB\MysqlConnection;
 use App\Dto\InternalLinkDto;
 
 class InternalLinksRepositoryImpl implements InternalLinksRepository
 {
     private Connection $connection;
 
-    public function __construct()
-    {
-        $this->connection = new MysqlConnection();
+    public function setConnection(Connection $connection){
+        $this->connection = $connection;
     }
 
     public function findAll(): array

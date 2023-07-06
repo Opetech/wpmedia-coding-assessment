@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Repository\InternalLinksRepositoryImpl;
 use App\Service\AdminService;
 
 class AdminController
@@ -15,6 +16,7 @@ class AdminController
 
     public function getCrawledLinks()
     {
+        $this->adminService->setInternalLinksRepository(new InternalLinksRepositoryImpl());
         return $this->adminService->getCrawledLinks();
     }
 }

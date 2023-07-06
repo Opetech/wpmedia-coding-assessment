@@ -22,10 +22,11 @@
 		"source": "https://github.com/wp-media/package-template"
 	},
 	"require": {
+		"ext-dom": "*",
+		"ext-libxml": "*",
 		"ext-pdo": "*",
-		"vlucas/phpdotenv": "^5.5",
-      "ext-dom": "*",
-		"ext-libxml": "*"
+		"guzzlehttp/guzzle": "^7.7",
+		"vlucas/phpdotenv": "^5.5"
 	},
 	"require-dev": {
 		"php": "^5.6 || ^7",
@@ -41,7 +42,11 @@
               "App\\": "src/"
          }
 	},
-	"autoload-dev": {},
+	"autoload-dev": {
+			"psr-4": {
+				"Tests\\": "tests/"
+			}
+	},
 	"scripts": {
 		"test-unit": "\"vendor/bin/wpmedia-phpunit\" unit path=Tests/Unit",
 		"test-integration": "\"vendor/bin/wpmedia-phpunit\" integration path=Tests/Integration/",

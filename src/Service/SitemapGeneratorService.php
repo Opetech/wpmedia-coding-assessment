@@ -20,8 +20,6 @@ class SitemapGeneratorService
     {
         if (file_exists($this->sitemapFilePath)) {
             unlink($this->sitemapFilePath);
-        } else {
-            var_dump("False");
         }
     }
 

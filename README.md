@@ -6,5 +6,7 @@
   - Make sure you are in the `/var/www` path
   - Install php dependencies: `composer install`
   - Run tests: `vendor/bin/phpunit`
-- Visit Browser: `http://localhost:8000`
+- Visit App: `http://localhost:8000`
+- Visit `http://localhost:8000/login` to login as admin
+- Admin email (admin@admin.com), Admin pass (Admin123)
 

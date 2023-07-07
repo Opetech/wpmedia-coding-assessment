@@ -20,7 +20,7 @@ class AuthService
         $statement = $this->connection->connection()->prepare($query);
         $statement->execute(['email' => $request->getEmail()]);
         $result = $statement->fetch();
-        if (count($result) > 0) {
+        if (is_array($result) && count($result) > 0) {
             $credentialIsValid = password_verify($request->getPassword(), $result['password']);
         }
         $this->connection->close();

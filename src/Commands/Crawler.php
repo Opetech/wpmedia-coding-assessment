@@ -64,15 +64,9 @@ class Crawler
         $anchorTags = $dom->getElementsByTagName('a');
         foreach ($anchorTags as $anchorTag) {
             $href = $anchorTag->getAttribute('href');
-            $absoluteUrl = $this->getAbsoluteUrl($href);
-            $results[]   = ['url' => $absoluteUrl];
+            $results[]   = ['url' => $href];
         }
 
         return $results;
-    }
-
-    private function getAbsoluteUrl(string $href)
-    {
-        return $_ENV['APP_BASE_URL'] . $href;
     }
 }

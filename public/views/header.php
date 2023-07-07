@@ -20,19 +20,19 @@ if (empty($meta_title)) {
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="<?php echo $_ENV['APP_BASE_URL']; ?>">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/services">Services</a>
+                <a class="nav-link" href="<?php echo $_ENV['APP_BASE_URL']; ?>/services">Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/about">About Us</a>
+                <a class="nav-link" href="<?php echo $_ENV['APP_BASE_URL']; ?>/about">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact Us</a>
+                <a class="nav-link" href="<?php echo $_ENV['APP_BASE_URL']; ?>/contact">Contact Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/sitemap">Sitemap</a>
+                <a class="nav-link" href="<?php echo $_ENV['APP_BASE_URL']; ?>/sitemap">Sitemap</a>
             </li>
         </ul>
     </div>

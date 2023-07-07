@@ -5,9 +5,17 @@ include 'header.php';
 <section>
     <div class="container">
         <div class="bg-light p-5 rounded">
-            <h1>Welcome!</h1>
-            <p class="lead">Hi. Welcome to my first web page. This is a responsive web page that I created using Bootstrap 5. Bootstrap is the most recent version of the Bootstrap framework that allows its users to create responsive websites with a mobile-first technique. This approach states that the web design is first developed for mobile phones, and later on for other devices.</p>
-            <p class="lead">Bootstrap 5 was launched in the year 2021 and has many amazing features such as it has speedy stylesheets and enhanced responsiveness.</p>
+            <h2>JSONPlaceholder Posts</h2>
+            <?php if (isset($_SESSION['error']))
+                echo '<h5>' . $_SESSION['message'] . '</h5>'
+            ?>
+            <?php if (isset($posts)) : ?>
+                <ul class="list-group list-group-flush">
+                    <?php foreach ($posts as $post) : ?>
+                        <li class="list-group-item"><a class="text-decoration-none" href="https://jsonplaceholder.typicode.com/posts/<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
         </div>
     </div>
 </section>

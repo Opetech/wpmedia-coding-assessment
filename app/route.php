@@ -1,13 +1,18 @@
 <?php
 
 use App\Controllers\AdminController;
+use App\Controllers\PostController;
 use App\Service\AdminService;
+use App\Service\PostService;
 
 $request = $_SERVER['REQUEST_URI'];
 $viewDir = __DIR__ . '/../public/views/';
 
 switch($request) {
     case '/':
+        $postService = new PostService();
+        $postController = new PostController($postService);
+        $posts = $postController->getAll();
         if (file_exists($viewDir . 'home.php')) {
             require $viewDir . 'home.php';
         } else if (file_exists($viewDir . 'home.html')) {

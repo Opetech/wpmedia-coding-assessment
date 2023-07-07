@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use App\DB\MysqlConnection;
 use App\Dto\InternalLinkDto;
 use App\Repository\InternalLinksRepository;
 use App\Service\SitemapGeneratorService;
@@ -19,6 +20,9 @@ class Crawler
 
     public function crawl(string $url)
     {
+        //Set db connection
+        $this->internalLinksRepository->setConnection(new MysqlConnection());
+
         if (count($this->internalLinksRepository->findAll()) > 0) {
             $this->internalLinksRepository->deleteAll();
         }
@@ -60,15 +64,9 @@ class Crawler
         $anchorTags = $dom->getElementsByTagName('a');
         foreach ($anchorTags as $anchorTag) {
             $href = $anchorTag->getAttribute('href');
-            $absoluteUrl = $this->getAbsoluteUrl($href);
-            $results[]   = ['url' => $absoluteUrl];
+            $results[]   = ['url' => $href];
         }
 
         return $results;
-    }
-
-    private function getAbsoluteUrl(string $href)
-    {
-        return $_ENV['APP_BASE_URL'] . $href;
     }
 }

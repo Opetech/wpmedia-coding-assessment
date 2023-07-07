@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use App\DB\MysqlConnection;
 use App\Dto\InternalLinkDto;
 use App\Repository\InternalLinksRepository;
 use App\Service\SitemapGeneratorService;
@@ -19,6 +20,9 @@ class Crawler
 
     public function crawl(string $url)
     {
+        //set db connection
+        $this->internalLinksRepository->setConnection(new MysqlConnection());
+
         if (count($this->internalLinksRepository->findAll()) > 0) {
             $this->internalLinksRepository->deleteAll();
         }
